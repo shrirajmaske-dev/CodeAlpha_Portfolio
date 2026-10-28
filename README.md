@@ -220,13 +220,34 @@ All REST API endpoints are prefixed with `/api/v1`:
 
 ## 🛠️ Build & Production Deployment
 
-To create an optimized production build:
+To create an optimized production build locally:
 ```bash
-# Builds both backend and frontend
+# Builds the production client bundle
 npm run build
+
+# Or build both server and client
+npm run build:all
 ```
 
 The compiled frontend output will be in `client/dist/`, and backend compiled files in `server/dist/`.
+
+---
+
+## ☁️ Deploying on Vercel
+
+This repository is pre-configured for **zero-configuration deployment on Vercel**:
+
+1. Push this repository to GitHub.
+2. In the [Vercel Dashboard](https://vercel.com/new), click **Add New...** &rarr; **Project**.
+3. Import your `CodeAlpha_Portfolio` repository.
+4. Leave all build and install settings as default — Vercel will automatically read `vercel.json`:
+   - **Install Command**: `npm run install:all` (also triggered via `postinstall`)
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `client/dist`
+   - **SPA Routing**: Handled via automatic `/index.html` rewrites
+5. Click **Deploy**!
+
+> **Note on Full-Stack Mode**: The frontend operates seamlessly in standalone mode with built-in architectural case studies, offline AI reasoning, and persistent client-side storage. If you host the backend Express server (e.g. on Render, Railway, or Fly.io), simply add the `VITE_API_BASE_URL` environment variable in your Vercel Project Settings.
 
 ---
 
