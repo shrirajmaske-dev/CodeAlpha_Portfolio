@@ -2,7 +2,7 @@ import { Project, Skill, SkillCategory, ContactInquiry, PortfolioChatResponse } 
 import { ContactFormData, ProjectFormData, SkillFormData } from './schemas.js';
 import { getStoredAuthToken } from './supabaseClient.js';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api/v1';
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE}${endpoint}`;
