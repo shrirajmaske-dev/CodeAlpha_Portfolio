@@ -73,13 +73,15 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`=======================================================`);
-  console.log(`🚀 Portfolio API Server listening on port ${PORT}`);
-  console.log(`📡 Base API URL: http://localhost:${PORT}/api/v1`);
-  console.log(`🌐 Allowed Client Origin: ${CLIENT_ORIGIN}`);
-  console.log(`=======================================================`);
-});
+// Start Server (only listen when not running in Vercel serverless environment)
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`=======================================================`);
+    console.log(`🚀 Portfolio API Server listening on port ${PORT}`);
+    console.log(`📡 Base API URL: http://localhost:${PORT}/api/v1`);
+    console.log(`🌐 Allowed Client Origin: ${CLIENT_ORIGIN}`);
+    console.log(`=======================================================`);
+  });
+}
 
 export default app;

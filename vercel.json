@@ -1,33 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "server": {
-      "root": "server",
-      "framework": "express"
-    },
-    "client": {
-      "root": "client",
-      "framework": "vite"
-    }
-  },
+  "installCommand": "npm run install:all",
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/dist",
   "rewrites": [
     {
-      "source": "/health",
-      "destination": {
-        "service": "server"
-      }
+      "source": "/api/(.*)",
+      "destination": "/api"
     },
     {
-      "source": "/api/(.*)",
-      "destination": {
-        "service": "server"
-      }
+      "source": "/health",
+      "destination": "/api"
     },
     {
       "source": "/(.*)",
-      "destination": {
-        "service": "client"
-      }
+      "destination": "/index.html"
     }
   ]
 }
